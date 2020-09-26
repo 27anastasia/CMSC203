@@ -1,0 +1,47 @@
+// Anastasia Micich 
+
+import java.util.Scanner;
+public class InternetServiceProject {
+
+	public static void main(String[] args) {
+		Scanner internetDiagnostics = new Scanner(System.in); // create a Scanner object
+		System.out.println("Hello! Please type yes if you are ready to begin the diagnosis.");
+		String response  = internetDiagnostics.nextLine(); // read user input
+		if (response != "no")
+			{
+			System.out.println("Reboot the computer and try to connect. Did this fix the problem? Type yes or no.");
+			String responseTwo = internetDiagnostics.nextLine(); // read user input
+			if (responseTwo == "yes")
+				System.out.println("Done!");
+			if (responseTwo != "yes")
+				{
+				System.out.println("Ok! Now try rebooting your router and try to connect. Did this work? Type yes or no."); 
+				
+				String responseThree = internetDiagnostics.nextLine(); // read user input 
+				if (responseThree == "yes")
+					System.out.println("Done!");
+				if (responseThree != "yes")
+				{
+					System.out.println("Make sure the cables connecting the router are firmly plugged in and power is getting to the router. Did that fix the problem? Type yes or no.");
+					String responseFour = internetDiagnostics.nextLine(); // read user input
+					if (responseFour == "yes")
+						System.out.println("Done!"); 
+					if (responseFour != "yes")
+					{
+						System.out.println("Move the computer closer to the router and try to connect. Did htis fix the problem? Type yes or no.");
+						String responseFive = internetDiagnostics.nextLine(); // read user input 
+						if (responseFive == "yes")
+							System.out.println("Done!"); 
+						if (responseFive != "yes")
+						{
+							System.out.println("Contact your ISP.");
+							System.out.println("Done!"); 
+						}
+					}
+					}
+				}
+			}
+
+	}
+
+}
