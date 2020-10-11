@@ -1,0 +1,142 @@
+// Anastasia Micich
+import java.util.Scanner;
+
+ public class RandomNumberGuesser {
+ 	public static void main(String[] args) {
+
+ 		System.out.println("Play the Random Number Guesser!");
+
+ 		String playAgain;
+ 		String message = "Number of guesses: ";
+ 		int currentGuess;
+ 		int acquiredNumber;
+
+
+ 		Scanner scan = new Scanner (System.in);
+ 		RNG random = new RNG();
+
+
+ 		do {
+
+ 			int highBound = 99;
+ 			int lowBound = 0;
+ 			int numberOfGuesses = 1;
+ 			acquiredNumber = random.rand();
+
+
+ 			System.out.println("Enter a number between " + lowBound + " and " + highBound + ": ");
+
+
+
+ 			do {
+
+ 				currentGuess = scan.nextInt();
+ 				System.out.println(message + numberOfGuesses);
+ 				numberOfGuesses++; 
+
+
+ 				while(random.inputValidation(currentGuess, lowBound, highBound) == false) 
+ 				{
+ 					System.out.println("Re-Enter your First Guess between " + lowBound + " and " + highBound + ":");
+ 					currentGuess = scan.nextInt();
+
+ 				}
+
+
+ 				if (guessStatus(currentGuess, acquiredNumber))
+ 				{
+
+ 					break;
+ 				}
+
+ 				if (numberOfGuesses > 7)
+ 				{
+ 					System.out.println("You lose!");
+ 					System.out.println("The correct number was: " + acquiredNumber);
+ 					break;
+
+ 				}
+
+
+
+
+
+
+
+ 				System.out.println(lowOrHigh(currentGuess, acquiredNumber));
+ 				if (higherThanGuess(currentGuess, acquiredNumber))
+ 				{
+ 					highBound = currentGuess; 
+ 				}
+ 				if (higherThanGuess(currentGuess, acquiredNumber) == false)
+ 				{
+ 					lowBound = currentGuess; 
+
+
+
+
+ 					System.out.println("Guess between " + lowBound + " and " + highBound + ": ");
+ 				}
+
+
+ 				}while(numberOfGuesses <= 7);
+
+
+ 				System.out.println("Would you like to play again?(enter \"yes\" or \"no\"): " );
+ 				scan.nextLine();
+ 				playAgain = scan.nextLine();
+
+
+ 			}while (playAgain.equalsIgnoreCase("yes"));
+
+ 			System.out.println("Thank you for playing the Random Number Guesser! Game Over!  " );
+ 			scan.close();
+ 			System.exit(0);
+
+ 		}
+
+
+
+
+
+ 		public static boolean guessStatus(int guess, int answer)
+ 		{
+ 			if(guess == answer)
+ 			{
+ 				System.out.println("Corect!");
+ 				return true;
+ 			}
+
+ 			return false;
+ 		}
+
+
+ 		public static boolean higherThanGuess(int guess, int answer)
+ 		{
+ 			if (guess > answer) 
+ 			{
+ 				return true;
+ 			}
+ 			return false;
+
+ 		}
+
+
+
+ 		public static String lowOrHigh(int guess, int answer)
+ 		{
+ 			if (guess > answer) 
+ 			{
+ 				String high = "Too high! Try again! ";
+ 				return high;
+ 			}
+ 			if (guess < answer)
+ 			{
+ 				String low = "Too low! Try again!";
+ 				return low;
+ 			}
+ 			return null;
+ 		}
+
+
+ 	}
